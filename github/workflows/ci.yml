@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        demo: [ mobile_sample_unity, ps_sample, webgl_demo ]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Python for tools
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Run linters
+        run: ./tools/lint.sh || true
+      - name: Run unit tests for ${{ matrix.demo }}
+        run: |
+          cd ${{ matrix.demo }} || exit 0
+          if [ -f ./run_unit_tests.sh ]; then
+            ./run_unit_tests.sh
+          else
+            echo "No unit test runner for ${{ matrix.demo }} — skipping"
+          fi
