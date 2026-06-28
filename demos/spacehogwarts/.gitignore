@@ -1,0 +1,36 @@
+# Flutter generated .gitignore
+
+# Misc
+*.class
+*.log
+*.pyc
+*.swp
+
+# Dart/Pub
+.dart_tool/
+.packages
+.pub/
+.pub-cache/
+
+# Build
+build/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+
+# Android/IntelliJ
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# VS Code
+.vscode/
+
+# Pods
+ios/Pods/
+
+# Generated files
+pubspec.lock
+
+# Secrets
+.env
